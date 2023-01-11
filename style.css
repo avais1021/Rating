@@ -13,8 +13,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background: linear-gradient(90deg, #FDBB2D 0%, #3A1C71 100%); */
     background: url(bg.webp) no-repeat center;
+    background-size: 100% 1000%;
 }
 
 .box img{
