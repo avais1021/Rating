@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Star Rating Website in JavaScript</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/solid.min.css" integrity="sha512-6mc0R607di/biCutMUtU9K7NtNewiGQzrvWX4bWTeqmljZdJrwYvKJtnhgR+Ryvj+NRJ8+NnnCM/biGqMe/iRA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+    <section>
+
+        <div class="container">
+
+            <div class="box">
+                <h1>Rate Your Favourite Picture</h1>
+
+                <!-- <img src="https://picsum.photos/300?random" alt=""> -->
+                <img src="https://source.unsplash.com/random/300x300?random" alt="">
+                <!-- <img src="https://loremflickr.com/g/320/240/paris?random" alt=""> -->
+
+                <div class="stars">
+                    <i class="fa-solid fa-star star"></i>
+                    <i class="fa-solid fa-star star"></i>
+                    <i class="fa-solid fa-star star"></i>
+                    <i class="fa-solid fa-star star"></i>
+                    <i class="fa-solid fa-star star"></i>
+                </div>
+
+                <p class="rating">Ratings</p>
+                <button class="btnNext" onclick="nextPage()">Next</button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script>
+        // const starParent = document.querySelectorAll(".stars");
+        const star = document.querySelectorAll(".star");
+        const rating = document.querySelector(".rating");
+        console.log(star);
+
+
+        for(var x=0 ; x<=star.length ; x++) {
+            star[x].starValue = (x+1);
+            // star[x].addEventListener("click" , function(){
+            //     console.log("active");
+            // })
+            ["click", "mouseover" , "mouseout"].forEach(function(e){
+                    star[x].addEventListener(e , showRating);
+            })
+        }
+
+        function showRating (e){
+
+            let type = e.type;
+            // console.log(e.type)
+            let starValue = this.starValue;
+            // console.log(starValue)
+
+                        // ------------ rating
+            if(type === "click"){
+                if(starValue >= 1 ){
+                    rating.innerHTML = "You rated this " +  starValue + " stars" ;
+                }
+            }
+
+                        // ------------ rating end
+
+            star.forEach(function(elem,ind){
+                if(type === "click"){
+                    if(ind < starValue){
+                        elem.classList.add("orange");
+                    }else{
+                        elem.classList.remove("orange");
+                    }
+                }
+                else if (type === "mouseover"){
+                    if(ind < starValue){
+                        elem.classList.add("yellow");
+                    }else{
+                        elem.classList.remove("yellow");
+                    }
+                }
+                else if (type === "mouseout"){
+                        elem.classList.remove("yellow")
+                }
+            })
+
+        }
+
+        function nextPage(){
+            window.location.reload();
+            
+        }
+
+    </script>
+
+</body>
+
+</html>
